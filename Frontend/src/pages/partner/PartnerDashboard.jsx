@@ -5,6 +5,7 @@ import { API_BASE_URL } from '../../config/api'
 const PartnerDashboard = () => {
   const [foodItems, setFoodItems] = useState([])
   const [showAddForm, setShowAddForm] = useState(false)
+  const [showLogoutModal, setShowLogoutModal] = useState(false)
   const [loading, setLoading] = useState(false)
   const [fetchLoading, setFetchLoading] = useState(true)
   const [error, setError] = useState('')
@@ -127,10 +128,15 @@ const PartnerDashboard = () => {
     }
   }
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
+    setShowLogoutModal(true)
+  }
+
+  const confirmLogout = async () => {
     try {
       await fetch(`${API_BASE_URL}/auth/partner/logout`, { credentials: 'include' })
     } catch { /* ignore */ }
+    setShowLogoutModal(false)
     navigate('/')
   }
 
@@ -405,6 +411,35 @@ const PartnerDashboard = () => {
                 )}
               </button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div className="logout-modal-overlay" onClick={() => setShowLogoutModal(false)}>
+          <div className="logout-modal-card" onClick={e => e.stopPropagation()}>
+            <div className="logout-modal-icon-wrapper">
+              <i className="ri-logout-box-r-line"></i>
+            </div>
+            <h3 className="logout-modal-title">Confirm Logout</h3>
+            <p className="logout-modal-message">
+              Are you sure you want to logout from Partner Dashboard?
+            </p>
+            <div className="logout-modal-actions">
+              <button 
+                className="logout-modal-btn cancel-btn" 
+                onClick={() => setShowLogoutModal(false)}
+              >
+                No, Stay
+              </button>
+              <button 
+                className="logout-modal-btn confirm-btn" 
+                onClick={confirmLogout}
+              >
+                Yes, Logout
+              </button>
+            </div>
           </div>
         </div>
       )}

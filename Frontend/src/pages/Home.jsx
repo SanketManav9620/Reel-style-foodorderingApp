@@ -5,33 +5,33 @@ const videoList = [
   {
     id: 1,
     url: '/videos/video1.mp4',
-    title: 'Sizzling Gourmet Burger',
-    tag: '#CrispyBurger 🍔',
-    chef: 'Chef Marco',
+    title: 'Hyderabadi Dum Biryani',
+    tag: '#RoyalBiryani 🍲',
+    chef: 'Royal Biryani House',
     likes: '14.2K'
   },
   {
     id: 2,
     url: '/videos/video2.mp4',
-    title: 'Woodfired Artisan Pizza',
-    tag: '#CheesyBurst 🍕',
-    chef: 'Bella Italia',
+    title: 'Special Dum Biryani Plate',
+    tag: '#HandiBiryani 🍚',
+    chef: 'The Biryani Express',
     likes: '18.9K'
   },
   {
     id: 3,
     url: '/videos/video3.mp4',
-    title: 'Chef Special Masterclass',
-    tag: '#ChefSpecial 👨‍🍳',
-    chef: 'Kitchen Confidential',
+    title: 'Sizzling Double Cheese Burger',
+    tag: '#CrispyBurger 🍔',
+    chef: 'Burger Palace',
     likes: '24.1K'
   },
   {
     id: 4,
     url: '/videos/video4.mp4',
-    title: 'Decadent Chocolate Lava',
-    tag: '#DessertGasm 🍰',
-    chef: 'Sweet Cravings',
+    title: 'Artisanal Berry Mocktail',
+    tag: '#SummerSip 🍹',
+    chef: 'The Liquid Lounge',
     likes: '31.5K'
   }
 ]

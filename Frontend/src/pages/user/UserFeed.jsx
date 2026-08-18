@@ -7,78 +7,78 @@ import StoreProfileCard from '../../components/StoreProfileCard'
 const demoReels = [
   {
     _id: 'demo1',
-    name: 'Sizzling Gourmet Burger',
-    description: 'Flame-grilled Angus patty with caramelized onions, smoked gouda, and truffle aioli on a brioche bun.',
+    name: 'Hyderabadi Dum Biryani',
+    description: 'Fragrant basmati rice cooked with rich aromatic spices, tender meat, saffron, and fresh herbs.',
     price: 349,
     videoUrl: '/videos/video1.mp4',
-    category: 'Burgers',
+    category: 'Biryani',
     likesCount: 0,
     commentsCount: 128,
+    foodPartner: {
+      name: 'Royal Biryani House',
+      handle: 'royalbiryani_official',
+      ownerName: 'Chef Zaheer',
+      phone: '+91 98765 43210',
+      address: '42 Royal Palace Road, Koramangala',
+      city: 'Bangalore',
+      cuisineType: 'Hyderabadi Biryani'
+    }
+  },
+  {
+    _id: 'demo2',
+    name: 'Special Dum Biryani Plate',
+    description: 'Slow-cooked authentic handi biryani served piping hot with raita and spicy salan.',
+    price: 399,
+    videoUrl: '/videos/video2.mp4',
+    category: 'Biryani',
+    likesCount: 0,
+    commentsCount: 245,
+    foodPartner: {
+      name: 'The Biryani Express',
+      handle: 'biryaniexpress_official',
+      ownerName: 'Chef Tariq',
+      phone: '+91 87654 32100',
+      address: '18 Grand Avenue, Indiranagar',
+      city: 'Bangalore',
+      cuisineType: 'Mughlai & Biryani'
+    }
+  },
+  {
+    _id: 'demo3',
+    name: 'Sizzling Double Cheese Burger',
+    description: 'Juicy flame-grilled gourmet burger loaded with melted cheddar, fresh lettuce, pickles, and secret sauce.',
+    price: 299,
+    videoUrl: '/videos/video3.mp4',
+    category: 'Burgers',
+    likesCount: 0,
+    commentsCount: 312,
     foodPartner: {
       name: 'Burger Palace',
       handle: 'burgerpalace_official',
       ownerName: 'Chef Marco',
-      phone: '+91 98765 43210',
-      address: '42 Flame Street, Koramangala',
+      phone: '+91 76543 21000',
+      address: '7 Flame Lane, HSR Layout',
       city: 'Bangalore',
       cuisineType: 'American Grill'
     }
   },
   {
-    _id: 'demo2',
-    name: 'Woodfired Artisan Pizza',
-    description: 'Hand-stretched dough topped with San Marzano tomatoes, fresh mozzarella, basil, and drizzled with extra-virgin olive oil.',
-    price: 499,
-    videoUrl: '/videos/video2.mp4',
-    category: 'Pizza',
-    likesCount: 0,
-    commentsCount: 245,
-    foodPartner: {
-      name: 'Bella Italia',
-      handle: 'bellaitalia_pizzeria',
-      ownerName: 'Chef Luigi',
-      phone: '+91 87654 32100',
-      address: '18 Via Roma, Indiranagar',
-      city: 'Bangalore',
-      cuisineType: 'Italian'
-    }
-  },
-  {
-    _id: 'demo3',
-    name: 'Chef Special Masterclass',
-    description: 'A curated tasting menu featuring seasonal delicacies, molecular gastronomy bites, and signature sauces.',
-    price: 799,
-    videoUrl: '/videos/video3.mp4',
-    category: 'Fine Dining',
-    likesCount: 0,
-    commentsCount: 312,
-    foodPartner: {
-      name: 'Kitchen Confidential',
-      handle: 'kitchen_confidential',
-      ownerName: 'Chef Ananya',
-      phone: '+91 76543 21000',
-      address: '7 Gourmet Lane, HSR Layout',
-      city: 'Bangalore',
-      cuisineType: 'Multi-Cuisine'
-    }
-  },
-  {
     _id: 'demo4',
-    name: 'Decadent Chocolate Lava',
-    description: 'Rich dark chocolate cake with a molten center, served with vanilla bean ice cream and raspberry coulis.',
-    price: 299,
+    name: 'Artisanal Berry Mocktail',
+    description: 'Refreshing handcrafted summer drink infused with wild berries, floral lavender, citrus, and sparkling soda.',
+    price: 249,
     videoUrl: '/videos/video4.mp4',
-    category: 'Desserts',
+    category: 'Beverages',
     likesCount: 0,
     commentsCount: 420,
     foodPartner: {
-      name: 'Sweet Cravings',
-      handle: 'sweetcravings_bakery',
-      ownerName: 'Pastry Chef Riya',
+      name: 'The Liquid Lounge',
+      handle: 'liquidlounge_bar',
+      ownerName: 'Mixologist Riya',
       phone: '+91 65432 10000',
-      address: '99 Dessert Drive, Whitefield',
+      address: '99 Chill Drive, Whitefield',
       city: 'Bangalore',
-      cuisineType: 'Bakery & Desserts'
+      cuisineType: 'Beverages & Cocktails'
     }
   }
 ]
@@ -94,6 +94,7 @@ const UserFeed = () => {
   const [showStorePopup, setShowStorePopup] = useState(false)
   const [showSavedDrawer, setShowSavedDrawer] = useState(false)
   const [showLikedDrawer, setShowLikedDrawer] = useState(false)
+  const [showLogoutModal, setShowLogoutModal] = useState(false)
 
   const [savedList, setSavedList] = useState([])
   const [likedList, setLikedList] = useState([])
@@ -377,10 +378,15 @@ const UserFeed = () => {
     setCommentText('')
   }
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
+    setShowLogoutModal(true)
+  }
+
+  const confirmLogout = async () => {
     try {
       await fetch(`${API_BASE_URL}/auth/user/logout`, { credentials: 'include' })
     } catch { /* ignore */ }
+    setShowLogoutModal(false)
     navigate('/')
   }
 
@@ -887,6 +893,35 @@ const UserFeed = () => {
                 setShowStorePopup(false)
               }}
             />
+          </div>
+        </div>
+      )}
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div className="logout-modal-overlay" onClick={() => setShowLogoutModal(false)}>
+          <div className="logout-modal-card" onClick={e => e.stopPropagation()}>
+            <div className="logout-modal-icon-wrapper">
+              <i className="ri-logout-box-r-line"></i>
+            </div>
+            <h3 className="logout-modal-title">Confirm Logout</h3>
+            <p className="logout-modal-message">
+              Are you sure you want to logout from Reel Food?
+            </p>
+            <div className="logout-modal-actions">
+              <button 
+                className="logout-modal-btn cancel-btn" 
+                onClick={() => setShowLogoutModal(false)}
+              >
+                No, Stay
+              </button>
+              <button 
+                className="logout-modal-btn confirm-btn" 
+                onClick={confirmLogout}
+              >
+                Yes, Logout
+              </button>
+            </div>
           </div>
         </div>
       )}

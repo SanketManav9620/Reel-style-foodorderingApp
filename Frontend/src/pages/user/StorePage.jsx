@@ -4,102 +4,84 @@ import { API_BASE_URL } from '../../config/api'
 
 // Dedicated store video catalog - strictly separated per store!
 const storeCatalogMap = {
-  'sweet cravings': [
+  'the liquid lounge': [
     {
-      _id: 'sc1',
-      name: 'Decadent Chocolate Lava Cake',
-      description: 'Rich dark chocolate cake with molten center, served with vanilla bean ice cream.',
-      price: 299,
+      _id: 'll1',
+      name: 'Artisanal Berry Mocktail',
+      description: 'Refreshing handcrafted summer drink infused with wild berries, floral lavender, citrus, and sparkling soda.',
+      price: 249,
       videoUrl: '/videos/video4.mp4',
       likesCount: '31.5k',
-      category: 'Desserts'
+      category: 'Beverages'
     },
     {
-      _id: 'sc2',
-      name: 'Red Velvet Cream Cupcake',
-      description: 'Moist red velvet sponge topped with silky cream cheese frosting.',
+      _id: 'll2',
+      name: 'Tropical Citrus Cooler',
+      description: 'Zesty orange, passionfruit, and mint cooler served over crushed ice.',
       price: 199,
       videoUrl: '/videos/video4.mp4',
-      likesCount: '12.8k',
-      category: 'Desserts'
-    },
-    {
-      _id: 'sc3',
-      name: 'Golden Caramel Cheesecake',
-      description: 'New York style baked cheesecake drizzled with warm salted caramel sauce.',
-      price: 349,
-      videoUrl: '/videos/video4.mp4',
-      likesCount: '19.4k',
-      category: 'Desserts'
+      likesCount: '18.8k',
+      category: 'Beverages'
     }
   ],
   'burger palace': [
     {
       _id: 'bp1',
-      name: 'Sizzling Gourmet Angus Burger',
-      description: 'Flame-grilled Angus patty with caramelized onions, smoked gouda, and truffle aioli.',
-      price: 349,
-      videoUrl: '/videos/video1.mp4',
-      likesCount: '14.2k',
+      name: 'Sizzling Double Cheese Burger',
+      description: 'Juicy flame-grilled gourmet burger loaded with melted cheddar, fresh lettuce, pickles, and secret sauce.',
+      price: 299,
+      videoUrl: '/videos/video3.mp4',
+      likesCount: '24.2k',
       category: 'Burgers'
     },
     {
       _id: 'bp2',
-      name: 'Double Bacon Cheese Smash Burger',
+      name: 'Smokey Bacon Cheese Smash Burger',
       description: 'Double crispy smashed beef patties with cheddar cheese and smoked bacon.',
-      price: 399,
-      videoUrl: '/videos/video1.mp4',
+      price: 349,
+      videoUrl: '/videos/video3.mp4',
       likesCount: '22.1k',
       category: 'Burgers'
-    },
-    {
-      _id: 'bp3',
-      name: 'Crispy Truffle Loaded Fries',
-      description: 'Golden skin-on fries tossed in truffle oil, parmesan, and chives.',
-      price: 249,
-      videoUrl: '/videos/video1.mp4',
-      likesCount: '15.6k',
-      category: 'Sides'
     }
   ],
-  'bella italia': [
+  'royal biryani house': [
     {
-      _id: 'bi1',
-      name: 'Woodfired Artisan Pizza',
-      description: 'Hand-stretched dough topped with San Marzano tomatoes, fresh mozzarella, and basil.',
-      price: 499,
+      _id: 'rb1',
+      name: 'Hyderabadi Dum Biryani',
+      description: 'Fragrant basmati rice cooked with rich aromatic spices, tender meat, saffron, and fresh herbs.',
+      price: 349,
+      videoUrl: '/videos/video1.mp4',
+      likesCount: '14.2k',
+      category: 'Biryani'
+    },
+    {
+      _id: 'rb2',
+      name: 'Mutton Shahi Dum Biryani',
+      description: 'Slow-cooked succulent mutton chunks layered with long grain basmati rice and fried onions.',
+      price: 449,
+      videoUrl: '/videos/video1.mp4',
+      likesCount: '19.3k',
+      category: 'Biryani'
+    }
+  ],
+  'the biryani express': [
+    {
+      _id: 'be1',
+      name: 'Special Dum Biryani Plate',
+      description: 'Slow-cooked authentic handi biryani served piping hot with raita and spicy salan.',
+      price: 399,
       videoUrl: '/videos/video2.mp4',
       likesCount: '18.9k',
-      category: 'Pizza'
+      category: 'Biryani'
     },
     {
-      _id: 'bi2',
-      name: 'Creamy Truffle Alfredo Pasta',
-      description: 'Fettuccine tossed in rich parmesan cream sauce with wild mushrooms.',
-      price: 449,
+      _id: 'be2',
+      name: 'Chicken 65 Special Platter',
+      description: 'Crispy spicy fried chicken tossed in curry leaves, garlic, and yogurt sauce.',
+      price: 299,
       videoUrl: '/videos/video2.mp4',
-      likesCount: '16.3k',
-      category: 'Italian'
-    }
-  ],
-  'kitchen confidential': [
-    {
-      _id: 'kc1',
-      name: 'Chef Special Masterclass',
-      description: 'A curated tasting menu featuring seasonal delicacies and signature sauces.',
-      price: 799,
-      videoUrl: '/videos/video3.mp4',
-      likesCount: '24.1k',
-      category: 'Chef Special'
-    },
-    {
-      _id: 'kc2',
-      name: 'Pan-Seared Salmon Glaze',
-      description: 'Fresh Norwegian salmon fillet served with asparagus and lemon butter.',
-      price: 699,
-      videoUrl: '/videos/video3.mp4',
-      likesCount: '17.8k',
-      category: 'Chef Special'
+      likesCount: '15.8k',
+      category: 'Starters'
     }
   ]
 }
@@ -107,45 +89,45 @@ const storeCatalogMap = {
 const demoStoresMap = {
   'demo1': {
     _id: 'demo1',
-    name: 'Burger Palace',
-    ownerName: 'Chef Marco',
+    name: 'Royal Biryani House',
+    ownerName: 'Chef Zaheer',
     phone: '+91 98765 43210',
-    address: '42 Flame Street, Koramangala',
+    address: '42 Royal Palace Road, Koramangala',
     city: 'Bangalore',
-    cuisineType: 'American Grill',
+    cuisineType: 'Hyderabadi Biryani',
     rating: '4.9 ★',
     customerServe: '14.2K'
   },
   'demo2': {
     _id: 'demo2',
-    name: 'Bella Italia',
-    ownerName: 'Chef Luigi',
+    name: 'The Biryani Express',
+    ownerName: 'Chef Tariq',
     phone: '+91 87654 32100',
-    address: '18 Via Roma, Indiranagar',
+    address: '18 Grand Avenue, Indiranagar',
     city: 'Bangalore',
-    cuisineType: 'Italian',
+    cuisineType: 'Mughlai & Biryani',
     rating: '4.8 ★',
     customerServe: '18.9K'
   },
   'demo3': {
     _id: 'demo3',
-    name: 'Kitchen Confidential',
-    ownerName: 'Chef Ananya',
+    name: 'Burger Palace',
+    ownerName: 'Chef Marco',
     phone: '+91 76543 21000',
-    address: '7 Gourmet Lane, HSR Layout',
+    address: '7 Flame Lane, HSR Layout',
     city: 'Bangalore',
-    cuisineType: 'Multi-Cuisine',
+    cuisineType: 'American Grill',
     rating: '4.9 ★',
     customerServe: '24.1K'
   },
   'demo4': {
     _id: 'demo4',
-    name: 'Sweet Cravings',
-    ownerName: 'Pastry Chef Riya',
+    name: 'The Liquid Lounge',
+    ownerName: 'Mixologist Riya',
     phone: '+91 65432 10000',
-    address: '99 Dessert Drive, Whitefield',
+    address: '99 Chill Drive, Whitefield',
     city: 'Bangalore',
-    cuisineType: 'Bakery & Desserts',
+    cuisineType: 'Beverages & Cocktails',
     rating: '4.9 ★',
     customerServe: '31.5K'
   }
